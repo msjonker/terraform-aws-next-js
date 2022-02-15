@@ -53,3 +53,12 @@ output "lambda_execution_role_arns" {
   description = "Lambda execution IAM Role ARNs"
   value       = { for k, v in local.lambdas : k => aws_iam_role.lambda[k].arn }
 }
+
+#########
+# Lambdas
+#########
+
+output "lambdas" {
+  description = "Lambdas"
+  value       = { for integration_key, integration in local.lambdas : integration_key => aws_lambda_function.this[integration_key] }
+}
